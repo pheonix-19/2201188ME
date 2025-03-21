@@ -11,7 +11,16 @@ def register():
     response = requests.post(f"{BASE_URL}/register", json=data).json()
     return jsonify(response)
 
+@app.route("/auth", methods=["POST"])
+def authenticate():
+    data = request.json
+    response = requests.post(f"{BASE_URL}/auth", json=data).json()
+    return jsonify(response)
 
+@app.route("/users", methods=["GET"])
+def get_users():
+    response = requests.get(f"{BASE_URL}/users").json()
+    return jsonify(response)
 
 if __name__ == "__main__":
     app.run(debug=True)
